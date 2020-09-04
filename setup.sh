@@ -1,6 +1,17 @@
+# create our cluster
 minikube start --vm-driver=docker
+
+# start and config our metalb pod
+# kubectl apply -f srcs/metallb/metallb.yaml
+kubectl apply -f srcs/metallb/metallb.yaml
+kubectl apply -f srcs/metallb/configlb.yaml
+
+# build our nginx image
 docker build srcs/nginx -t nginx
-kubectl run nginx --image=nginx --port=80 --port=443
-kubectl create deployment --image=nginx nginx-app
-# kubectl set env deployment/nginx-app  DOMAIN=cluster
-minikube dashboard
+
+# deploy and start nginx as a service
+kubectl apply -f srcs/nginx/nginx-deploy.yaml
+kubectl apply -f srcs/nginx/nginx-service.yaml
+
+# start the web dashboard
+# minikube dashboard
