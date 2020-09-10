@@ -3,32 +3,35 @@ kind: Service
 metadata:
   name: ftps
   labels:
-    run: ftps
+    app: ftps
 spec:
   type: LoadBalancer
   selector:
-    run: ftps
+    app: ftps
   ports:
   - port: 21
 #    targetPort: 21
     name: ftps
-  - port: 21000
+  #- port: 21000
  #   targetPort : 21000
-    name : my-ftps
+   # name : my-ftps
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ftps
+  labels:
+    app: ftps
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      run: ftps
-  replicas: 1
+      app: ftps
   template:
     metadata:
       labels:
-        run: ftps
+        app: ftps
     spec:
       containers:
       - name: ftps
