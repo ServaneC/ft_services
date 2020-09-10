@@ -1,35 +1,32 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ftps
+  name: mysql
   labels:
-    app: ftps
+    app: mysql
 spec:
   type: LoadBalancer
   selector:
-    app: ftps
-  ports:
-  - port: 21
-    name: ftps
----
+    app: mysql
+---   
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps
+  name: mysql
   labels:
-    app: ftps
+    app: mysql
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: ftps
+      app: mysql
   template:
     metadata:
       labels:
-        app: ftps
+        app: mysql
     spec:
       containers:
-      - name: ftps
-        image: ftps_img
+      - name: mysql
+        image: mysql_img
         imagePullPolicy: Never

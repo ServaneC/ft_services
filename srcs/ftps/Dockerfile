@@ -12,7 +12,6 @@ RUN echo "schene" > /srv/ftps/user.txt
 
 RUN rc-service vsftpd condrestart
 RUN rc-update add vsftpd
-#RUN lftp 
 
 EXPOSE 21
 
