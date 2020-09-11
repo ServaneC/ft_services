@@ -1,32 +1,35 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: grafana
   labels:
-    app: mysql
+    app: grafana
 spec:
   type: LoadBalancer
   selector:
-    app: mysql
+    app: grafana
+  ports:
+  - name: grafana
+    port: 3000
 ---   
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: grafana
   labels:
-    app: mysql
+    app: grafana
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: mysql
+      app: grafana
   template:
     metadata:
       labels:
-        app: mysql
+        app: grafana
     spec:
       containers:
-      - name: mysql
-        image: mysql_img
+      - name: grafana
+        image: grafana_img
         imagePullPolicy: Never
