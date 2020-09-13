@@ -44,4 +44,4 @@ kubectl delete deployments nginx; kubectl delete service nginx; kubectl create -
 # kubectl delete deployments grafana; kubectl delete service grafana; kubectl create -f ./srcs/grafana-service.yaml
 
 # start the web dashboard
-# minikube dashboard
+ minikube dashboard
