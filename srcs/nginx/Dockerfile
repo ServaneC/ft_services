@@ -1,7 +1,6 @@
 FROM alpine:3.12.0
 
 RUN apk update && apk add nginx openssl --no-cache 
-#    && touch /var/www/index.html
 
 COPY index.html /var/www/index.html
 
