@@ -11,6 +11,7 @@ spec:
   ports:
   - name: grafana
     port: 3000
+    targetPort: 3000
 ---   
 apiVersion: apps/v1
 kind: Deployment
@@ -33,3 +34,11 @@ spec:
       - name: grafana
         image: grafana_img
         imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+         - name: GF_SECURITY_ADMIN_USER
+           value: schene
+         - name: GF_SECURITY_ADMIN_PASSWORD
+           value: schene42
