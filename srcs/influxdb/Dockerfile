@@ -1,12 +1,16 @@
 FROM alpine:3.12.0
 
-WORKDIR /tmp
+WORKDIR /tmp/
 
-RUN apk update && apk add --no-cache wget tar
+RUN apk update && apk add --no-cache influxdb \
+    &&  apk add --no-cache --upgrade bash
 
-RUN wget https://dl.influxdata.com/influxdb/releases/influxdb-1.8.2_linux_amd64.tar.gz \
-    && tar xvfz influxdb-1.8.2_linux_amd64.tar.gz \
-    && rm influxdb-1.8.2_linux_amd64.tar.gz \
-    && mv influxdb-1.8.2-1 influxdb
+# COPY ./influxdb.conf /etc/influxdb/influxdb.conf
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+COPY ./influxdb.sh .
+
+RUN chmod +x influxdb.sh
+
+EXPOSE 8086
+
+ENTRYPOINT ./influxdb.sh

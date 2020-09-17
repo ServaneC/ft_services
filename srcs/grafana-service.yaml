@@ -11,6 +11,7 @@ spec:
   ports:
   - name: grafana
     port: 3000
+    targetPort: 3000
 ---   
 apiVersion: apps/v1
 kind: Deployment
@@ -33,3 +34,16 @@ spec:
       - name: grafana
         image: grafana_img
         imagePullPolicy: Never
+        env:
+        - name: GRAF_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana
+              key: user
+        - name: GRAF_PASS
+          valueFrom:
+            secretKeyRef:
+              name: grafana
+              key: password
+        ports:
+        - containerPort: 3000
