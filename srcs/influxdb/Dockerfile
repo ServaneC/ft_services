@@ -10,7 +10,6 @@ RUN apk update && apk add --no-cache influxdb \
 COPY ./influxdb.sh .
 
 RUN chmod +x influxdb.sh
-
 EXPOSE 8086
 
 ENTRYPOINT ./influxdb.sh
