@@ -5,7 +5,7 @@ WORKDIR /tmp/
 RUN apk update && apk add --no-cache influxdb \
     &&  apk add --no-cache --upgrade bash
 
-# COPY ./influxdb.conf /etc/influxdb/influxdb.conf
+COPY ./influxdb.conf /etc/influxdb/influxdb.conf
 
 COPY ./influxdb.sh .
 

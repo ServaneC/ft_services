@@ -1,11 +1,11 @@
 apiVersion: 1
 
 deleteDatasources:
-  - name: InfluxDB
+  - name: influxdb
     orgId: 1
 
 datasources:
-  - name: InfluxDB
+  - name: influxdb
     type: influxdb
     url: http://influxdb:8086
-    database: InfluxDB
+    database: telegraf_db
