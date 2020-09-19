@@ -15,8 +15,8 @@ RUN apk add curl nano gettext
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 COPY telegraf.sh .
 
-RUN chmod +x setup.sh
+RUN chmod +x telegraf.sh
 
 EXPOSE 4999
 
-CMD ./elegraf.sh
+CMD ./telegraf.sh
