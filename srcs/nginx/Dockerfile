@@ -11,7 +11,6 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
 
 COPY srcs/nginx.conf /etc/nginx/nginx.conf
-COPY srcs/default.conf /etc/nginx/conf.d/default.conf
 
 COPY srcs/nginx.sh .
 RUN chmod +x nginx.sh
