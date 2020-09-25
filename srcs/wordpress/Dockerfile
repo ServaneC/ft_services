@@ -12,6 +12,7 @@ RUN wget https://wordpress.org/wordpress-5.5.1.tar.gz \
     && mv wordpress /var/www/wordpress
 
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY wp-config.php /var/www/wordpress/wp-config.php
 
 COPY wordpress.sh .
 RUN chmod +x ./wordpress.sh
