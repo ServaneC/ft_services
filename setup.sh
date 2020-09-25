@@ -11,7 +11,6 @@ else
     kubectl delete --all namespaces
 fi
 
-
 # create our cluster
 
 # needed in order to use locally build images
