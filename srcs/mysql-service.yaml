@@ -5,10 +5,41 @@ metadata:
   labels:
     app: mysql
 spec:
-  type: LoadBalancer
+  ports:
+  - port: 3306
+    protocol: TCP
   selector:
     app: mysql
----   
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,8 +47,7 @@ metadata:
   labels:
     app: mysql
 spec:
-  strategy:
-    type: Recreate
+  replicas: 1
   selector:
     matchLabels:
       app: mysql
@@ -29,4 +59,22 @@ spec:
       containers:
       - name: mysql
         image: mysql_img
+        ports:
+        - containerPort: 3306
         imagePullPolicy: Never
+        env:
+        - name: DB_NAME
+          value: wordpress
+        - name: DB_USER
+          value: mysql
+        - name: DB_PASS
+          value: pass
+        - name: MYSQL_HOME
+          value: "/etc/"
+          volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+        volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim

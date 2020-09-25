@@ -1,10 +1,8 @@
 #! /bin/sh
 
-export FTP_USERNAME=42user;
-export FTP_PASSWORD=42pass;
+export FTP_USERNAME=schene;
+export FTP_PASSWORD=pass;
 
-echo -e "$FTP_PASSWORD\n$FTP_PASSWORD" | adduser -h /mnt/ftp $FTP_USERNAME
-mkdir -p /mnt/ftp/doss
-echo "file" > /mnt/ftp/doss/file
-
+adduser -D -h /var/ftp $FTP_USERNAME
+echo "$FTP_USERNAME:$FTP_PASSWORD" | chpasswd
 vsftpd /etc/vsftpd/vsftpd.conf

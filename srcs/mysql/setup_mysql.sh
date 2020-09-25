@@ -1,8 +1,14 @@
-mysql -u root -e "CREATE DATABASE my_database"
-mysql -u root -e "CREATE USER 'schene'@'localhost' IDENTIFIED WITH my_sql_pass BY '42borntocode'"
-mysql -u root -e "GRANT ALL PRIVILEGES ON my_database.* TO 'schene'@'localhost' IDENTIFIED BY '42borntocode'"
-mysql -u root -e "FLUSH PRIVILEGES"
+mysql_install_db --user=mysql --ldata=/var/lib/mysql
 
-mysql
+# allow local dbg
 
-tail -f /dev/null
+:> /tmp/sql
+# allow external connections
+echo "CREATE DATABASE IF NOT EXISTS $DB_NAME CHARACTER SET utf8 COLLATE utf8_general_ci;" >> /tmp/sql
+echo "SET PASSWORD FOR '$DB_USER'@'localhost'=PASSWORD('${DB_PASS}') ;" >> /tmp/sql
+echo "GRANT ALL ON *.* TO '$DB_USER'@'127.0.0.1' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION;" >> /tmp/sql
+echo "GRANT ALL ON *.* TO '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION;" >> /tmp/sql
+echo "GRANT ALL ON *.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION;" >> /tmp/sql
+echo "FLUSH PRIVILEGES;" >> /tmp/sql
+
+/usr/bin/mysqld --console --init_file=/tmp/sql

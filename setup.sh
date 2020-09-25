@@ -1,16 +1,19 @@
-# # create our cluster
-kubectl delete --all deploy
-kubectl delete --all svc
-# # kubectl delete --all secret
-# # kubectl delete --all nodes
-# # kubectl delete --all pods
-# # kubectl delete --all namespaces
-
+# cleaning everything
 if ! kubectl version &>/dev/null; then
 	service nginx stop
+    minikube start --driver=docker
+else
+    kubectl delete --all deploy
+    kubectl delete --all svc
+    kubectl delete --all secret
+    # kubectl delete --all nodes
+    kubectl delete --all pods
+    kubectl delete --all namespaces
 fi
 
-minikube start --driver=docker
+
+# create our cluster
+
 # needed in order to use locally build images
 eval $(minikube docker-env)
 
@@ -31,9 +34,6 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manife
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl delete -f ./srcs/config.yaml; kubectl apply -f ./srcs/config.yaml
 
-# IP= $(kubectl get node -o=custom-columns='DATA:status.addresses[0].address' | sed -n 2p)
-# echo "IP : ${IP}"
-
 kubectl create secret generic grafana \
 	--from-literal=user="schene" \
 	--from-literal=password="schene42"
@@ -46,8 +46,8 @@ kubectl create secret generic nginx-ssh \
 docker build -t telegraf_img ./srcs/telegraf
 docker build -t nginx_img ./srcs/nginx
 docker build -t ftps_img ./srcs/ftps
-# docker build -t mysql_img ./srcs/mysql
-# docker build -t phpmyadmin_img ./srcs/phpmyadmin
+docker build -t mysql_img ./srcs/mysql
+docker build -t phpmyadmin_img ./srcs/phpmyadmin
 # docker build -t wordpress_img ./srcs/wordpress
 docker build -t influxdb_img ./srcs/influxdb
 docker build -t grafana_img ./srcs/grafana
@@ -56,8 +56,8 @@ docker build -t grafana_img ./srcs/grafana
 kubectl create -f ./srcs/telegraf-service.yaml
 kubectl apply -f ./srcs/nginx-service.yaml
 kubectl create -f ./srcs/ftps-service.yaml
-# kubectl create -f ./srcs/mysql-service.yaml
-# kubectl create -f ./srcs/phpmyadmin-service.yaml
+kubectl create -f ./srcs/mysql-service.yaml
+kubectl create -f ./srcs/phpmyadmin-service.yaml
 # kubectl create -f ./srcs/wordpress-service.yaml
 kubectl create -f ./srcs/influxdb-service.yaml
 kubectl create -f ./srcs/grafana-service.yaml
