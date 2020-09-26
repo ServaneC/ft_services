@@ -6,7 +6,9 @@ RUN apk update && apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zl
     && mkdir -p /www/tmp && \
 	apk add wget nginx
 
-RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz \
+
+
+RUN wget  http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz \
     && tar -xvzf phpMyAdmin-5.0.2-all-languages.tar.gz \
     && rm phpMyAdmin-5.0.2-all-languages.tar.gz \
     && mv phpMyAdmin-5.0.2-all-languages  phpmyadmin \
