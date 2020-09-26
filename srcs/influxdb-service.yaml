@@ -5,11 +5,12 @@ metadata:
   labels:
     app: influxdb
 spec:
+  selector:
+    app: influxdb
   ports:
   - port: 8086
     protocol: TCP
-  selector:
-    app: influxdb
+
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -47,7 +48,8 @@ metadata:
   labels:
     app: influxdb
 spec:
-  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: influxdb

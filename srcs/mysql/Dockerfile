@@ -1,10 +1,9 @@
-FROM alpine:3.12.0
+FROM alpine:3.12
 
 WORKDIR /tmp
 
 RUN apk update && apk add --no-cache mysql mysql-client
 
-COPY my.cnf /etc/mysql/conf.d/
 COPY my.cnf /etc/
 
 COPY setup_mysql.sh ./setup_mysql.sh

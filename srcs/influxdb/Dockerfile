@@ -8,8 +8,10 @@ RUN apk update && apk add --no-cache influxdb \
 COPY ./influxdb.conf /etc/influxdb/influxdb.conf
 
 COPY ./influxdb.sh .
-
 RUN chmod +x influxdb.sh
+
 EXPOSE 8086
+
+VOLUME /var/lib/influxdb
 
 ENTRYPOINT ./influxdb.sh

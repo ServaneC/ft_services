@@ -6,7 +6,7 @@ declare(strict_types=1);
  * This is needed for cookie based authentication to encrypt password in                                                         
  * cookie. Needs to be 32 chars long.                                                                                            
  */
-$cfg['blowfish_secret'] = 'FDXO6GfXqQSdMv8FGd::0EM{fOGvMN8E';
+$cfg['blowfish_secret'] = 'hvgHCGFDWFGVBDHKDHBNBDjdje5)@jhd';
 
 /* Servers configuration */
 $i = 1;
@@ -24,7 +24,7 @@ $cfg['Servers'][$i]['password'] = 'pass';
 
 /* Directories for saving/loading files from server */
 $cfg['UploadDir'] = '';
-$cfg['PmaAbsoluteUri'] = '192.168.99.203:5000';
+$cfg['PmaAbsoluteUri'] = '192.168.99.101:5000';
 $cfg['SaveDir'] = '';
 
 $cfg['TempDir'] = 'tmp';
