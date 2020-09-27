@@ -9,9 +9,11 @@ RUN apk update && apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zl
 RUN wget https://wordpress.org/wordpress-5.5.1.tar.gz \
     && tar -xvzf wordpress-5.5.1.tar.gz \
     && rm  wordpress-5.5.1.tar.gz \
-    && mv wordpress /var/www/wordpress
+    && mv wordpress /var/www/wordpress \
+    && rm /var/www/wordpress/wp-admin/install.php
 
 COPY wp-config.php /var/www/wordpress/
+COPY install.php /var/www/wordpress/wp-admin/install.php
 
 COPY nginx.conf /etc/nginx/nginx.conf
 

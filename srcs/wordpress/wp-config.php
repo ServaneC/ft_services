@@ -47,7 +47,7 @@ define( 'DB_COLLATE', '' );
  * @since 2.6.0
  */
 
-define('AUTH_KEY',         'QWBVMFa&K~K$:m<4=sZ^/dYA:F*4V1CZYi|O-2!M9O:V{!W3Jli:|L$ 2#!Gtha^');
+ define('AUTH_KEY',         'QWBVMFa&K~K$:m<4=sZ^/dYA:F*4V1CZYi|O-2!M9O:V{!W3Jli:|L$ 2#!Gtha^');
 define('SECURE_AUTH_KEY',  '!-+Na*#x0KYIK;%E!ST>jsUy&S|E1w6G=-jzN/+N>+HW>;7GO^g5 .0?wI+Pr,Ma');
 define('LOGGED_IN_KEY',    '05N7DkAaukRogHf%0?[zB2b|uU#CF:v&HJ6J>t-Fc|%u#5~hB[Hj}i^Hde1 nf]0');
 define('NONCE_KEY',        'E=}Tb[FFqj_7xvbppE3m-K.yjQK`RD;wsLfOyppu.LARs-$v]BS<J:T0O|2h|HHT');
@@ -78,6 +78,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
+
 define( 'WP_DEBUG', true );
 
 /* That's all, stop editing! Happy publishing. */
@@ -88,4 +89,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** Sets up WordPress vars and included files. */
+
 require_once ABSPATH . 'wp-settings.php';
