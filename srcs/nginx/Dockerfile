@@ -2,7 +2,7 @@ FROM alpine:3.12
 
 WORKDIR /tmp/
 
-RUN apk update && apk add nginx openssl --no-cache 
+RUN apk update && apk add nginx openssl supervisor --no-cache 
 
 COPY srcs/index.html /var/www/localhost/htdocs/index.html
 
@@ -11,6 +11,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
 
 COPY srcs/nginx.conf /etc/nginx/nginx.conf
+COPY srcs/supervisord.conf /etc/supervisord.conf
 
 COPY srcs/nginx.sh .
 RUN chmod +x nginx.sh
