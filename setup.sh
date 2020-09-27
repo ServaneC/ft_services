@@ -32,9 +32,9 @@ eval $(minikube docker-env)
 # kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 # kubectl delete -f ./srcs/config.yaml; kubectl apply -f ./srcs/config.yaml
 
-# kubectl create secret generic grafana \
-# 	--from-literal=user="schene" \
-# 	--from-literal=password="schene42"
+kubectl create secret generic grafana \
+	--from-literal=user="schene" \
+	--from-literal=password="schene42"
 
 # kubectl create secret generic nginx-ssh \
 # 	--from-literal=user="schene" \
@@ -48,18 +48,18 @@ eval $(minikube docker-env)
 docker build -t mysql_img ./srcs/mysql
 docker build -t phpmyadmin_img ./srcs/phpmyadmin
 docker build -t wordpress_img ./srcs/wordpress
-# docker build -t influxdb_img ./srcs/influxdb
-# docker build -t grafana_img ./srcs/grafana
+docker build -t influxdb_img ./srcs/influxdb
+docker build -t grafana_img ./srcs/grafana
 
 # create and deploy our services
-# kubectl create -f ./srcs/telegraf-service.yaml
-# kubectl apply -f ./srcs/nginx-service.yaml
-# kubectl create -f ./srcs/ftps-service.yaml
+kubectl create -f ./srcs/telegraf-service.yaml
+kubectl apply -f ./srcs/nginx-service.yaml
+kubectl create -f ./srcs/ftps-service.yaml
 kubectl create -f ./srcs/mysql-service.yaml
 kubectl create -f ./srcs/phpmyadmin-service.yaml
 kubectl create -f ./srcs/wordpress-service.yaml
-# kubectl create -f ./srcs/influxdb-service.yaml
-# kubectl create -f ./srcs/grafana-service.yaml
+kubectl create -f ./srcs/influxdb-service.yaml
+kubectl create -f ./srcs/grafana-service.yaml
 
 # start the web dashboard
 minikube dashboard
