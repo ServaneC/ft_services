@@ -2,7 +2,7 @@ FROM alpine:3.12
 
 WORKDIR /tmp/
 
-RUN apk update && apk add --no-cache --upgrade bash \
+RUN apk update && apk add --no-cache --upgrade bash supervisor \
     && apk add --no-cache grafana --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 COPY srcs/grafana.ini /usr/share/grafana/conf/custom.ini
@@ -12,6 +12,8 @@ COPY srcs/dashboards /var/lib/grafana/dashboards
 
 COPY srcs/grafana.sh .
 RUN chmod +x ./grafana.sh
+
+COPY srcs/supervisord.conf /etc/supervisord.conf
 
 EXPOSE 3000
 
