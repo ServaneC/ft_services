@@ -1,4 +1,4 @@
-# cleaning everything and/or creating our cluster
+# cleaning everything
 
 if ! kubectl version &>/dev/null; then
 	service nginx stop
@@ -11,8 +11,8 @@ else
     # kubectl delete --all namespaces
 fi
 
+#creating our cluster
 minikube start --driver=docker
-minikube dashboard &
 
 # needed in order to use locally build images
 eval $(minikube docker-env)
@@ -38,28 +38,30 @@ kubectl create secret generic grafana \
 	--from-literal=user="schene" \
 	--from-literal=password="schene42"
 
-# kubectl create secret generic nginx-ssh \
-# 	--from-literal=user="schene" \
-# 	--from-literal=password="schene"
+kubectl create secret generic nginx-ssh \
+	--from-literal=user="schene" \
+	--from-literal=password="schene"
 
 # build our images
-docker build -t telegraf_img ./srcs/telegraf
-docker build -t nginx_img ./srcs/nginx
+# docker build -t telegraf_img ./srcs/telegraf
+# docker build -t nginx_img ./srcs/nginx
 docker build -t ftps_img ./srcs/ftps
-docker build -t mysql_img ./srcs/mysql
-docker build -t phpmyadmin_img ./srcs/phpmyadmin
-docker build -t wordpress_img ./srcs/wordpress
-docker build -t influxdb_img ./srcs/influxdb
-docker build -t grafana_img ./srcs/grafana
+# docker build -t mysql_img ./srcs/mysql
+# docker build -t phpmyadmin_img ./srcs/phpmyadmin
+# docker build -t wordpress_img ./srcs/wordpress
+# docker build -t influxdb_img ./srcs/influxdb
+# docker build -t grafana_img ./srcs/grafana
 
 # create and deploy our services
-kubectl create -f ./srcs/telegraf-service.yaml
-kubectl apply -f ./srcs/nginx-service.yaml
+# kubectl create -f ./srcs/telegraf-service.yaml
+# kubectl apply -f ./srcs/nginx-service.yaml
 kubectl create -f ./srcs/ftps-service.yaml
-kubectl create -f ./srcs/mysql-service.yaml
-kubectl create -f ./srcs/phpmyadmin-service.yaml
-kubectl create -f ./srcs/wordpress-service.yaml
-kubectl create -f ./srcs/influxdb-service.yaml
-kubectl create -f ./srcs/grafana-service.yaml
+# kubectl create -f ./srcs/mysql-service.yaml
+# kubectl create -f ./srcs/phpmyadmin-service.yaml
+# kubectl create -f ./srcs/wordpress-service.yaml
+# kubectl create -f ./srcs/influxdb-service.yaml
+# kubectl create -f ./srcs/grafana-service.yaml
 
+
+minikube dashboard &
 echo 'user42' | minikube tunnel

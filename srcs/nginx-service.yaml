@@ -13,8 +13,8 @@ spec:
     port: 80
   - name: https
     port: 443
-#   - name: ssh
-#     port: 22
+  - name: ssh
+    port: 22
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23,7 +23,6 @@ metadata:
   labels:
     app: nginx
 spec:
-#   replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -41,14 +40,14 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
-        # env:
-        # - name: SSH_USERNAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: nginx-ssh
-        #       key: user
-        # - name: SSH_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: nginx-ssh
-        #       key: password
+        env:
+        - name: SSH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: nginx-ssh
+              key: user
+        - name: SSH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nginx-ssh
+              key: password
