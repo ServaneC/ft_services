@@ -46,7 +46,7 @@ spec:
         - name: FTP_USERNAME
           value: schene
         - name: FTP_PASSWORD
-          value: pass
+          value: schene42
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:

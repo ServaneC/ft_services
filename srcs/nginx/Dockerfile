@@ -12,10 +12,6 @@ RUN adduser -D -g 'www' www && \
 
 COPY srcs/index.html /var/www/localhost/htdocs/index.html
 
-# RUN openrc; touch /run/openrc/softlevel
-# RUN rc-update add sshd;
-# RUN mkdir -p /run/nginx/
-
 RUN	adduser -D user
 RUN	echo "user:password"|chpasswd
 RUN ssh-keygen -A
@@ -37,7 +33,3 @@ VOLUME ["/sys/fs/cgroup"]
 EXPOSE 80 443 22
 
 ENTRYPOINT ./nginx.sh
-
-
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-# CMD ["sh", "-c", "/tmp/setup.sh ; /usr/bin/supervisord -c /etc/supervisord.conf"]

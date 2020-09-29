@@ -1,0 +1,51 @@
+{
+    "id": null,
+    "uid": "SCwp42",
+    "title": "Wordpress dashboard",
+    "graphTooltip": 0,
+    "tags": [],
+    "style": "dark",
+    "timezone": "",
+    "editable": true,
+    "panels": [ {
+      "title": "Wordpress panel",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "targets": [
+        {
+          "measurement": "kubernetes_deployment",
+          "tags": [
+            {
+              "key": "deployment_name",
+              "operator": "=",
+              "value": "wordpress"
+            }
+          ]
+        }
+      ],
+      "type": "graph"
+    }],
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "time_options": [],
+      "refresh_intervals": []
+    },
+    "templating": {
+      "list": []
+    },
+    "annotations": {
+      "list": []
+    },
+    "refresh": "5s",
+    "version": 1,
+    "schemaVersion": 26,
+    "links": []
+  }
