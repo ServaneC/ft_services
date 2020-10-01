@@ -139,7 +139,7 @@ function display_setup_form( $error = null ) {
 			</th>
 			<td>
 				<div class="wp-pwd">
-					<?php $initial_password = isset( $_POST['admin_password'] ) ? stripslashes( $_POST['admin_password'] ) : 'schene42'; ?>
+					<?php $initial_password = isset( $_POST['admin_password'] ) ? stripslashes( $_POST['admin_password'] ) : 'schene@42ft-services'; ?>
 					<input type="password" name="admin_password" id="pass1" class="regular-text" autocomplete="off" data-reveal="1" data-pw="<?php echo esc_attr( $initial_password ); ?>" aria-describedby="pass-strength-result" />
 					<button type="button" class="button wp-hide-pw hide-if-no-js" data-start-masked="<?php echo (int) isset( $_POST['admin_password'] ); ?>" data-toggle="0" aria-label="<?php esc_attr_e( 'Hide password' ); ?>">
 						<span class="dashicons dashicons-hidden"></span>
@@ -204,8 +204,9 @@ function display_setup_form( $error = null ) {
 			</td>
 		</tr>
 	</table>
-	<p class="step"><?php submit_button( __( 'Install WordPress' ), 'large', 'Submit', false, array( 'id' => 'submit' ) ); ?></p>
+	<p class="step"><?php submit_button( __( 'Install WordPress' ), 'large', 'Submit', true, array( 'id' => 'submit' ) ); ?></p>
 	<input type="hidden" name="language" value="<?php echo isset( $_REQUEST['language'] ) ? esc_attr( $_REQUEST['language'] ) : ''; ?>" />
+
 </form>
 	<?php
 } // End display_setup_form().

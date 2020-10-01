@@ -3,8 +3,9 @@ FROM alpine:3.12
 WORKDIR /tmp
 
 RUN apk update && apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session php7-zip --no-cache \
-    && mkdir -p /www/tmp && \
-	apk add wget nginx
+    && mkdir -p /www/tmp \
+	&& apk add wget supervisor nginx --no-cache \
+    && mkdir -p /run/nginx
 
 RUN wget  http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz \
     && tar -xvzf phpMyAdmin-5.0.2-all-languages.tar.gz \
@@ -14,7 +15,10 @@ RUN wget  http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-
 
 
 COPY config.inc.php /var/www/phpmyadmin
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY supervisord.conf /etc/supervisord.conf
+
+# COPY create_users.sql /var/www/phpmyadmin/
 
 COPY phpmyadmin.sh .
 RUN chmod +x ./phpmyadmin.sh
