@@ -43,7 +43,7 @@ eval $(minikube docker-env)
 # 	--from-literal=user="schene" \
 # 	--from-literal=password="schene"
 
-# # # build our images
+# # build our images
 # docker build -t telegraf_img ./srcs/telegraf
 # docker build -t nginx_img ./srcs/nginx
 # docker build -t ftps_img ./srcs/ftps
