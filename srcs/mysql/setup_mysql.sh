@@ -48,6 +48,17 @@ echo "FLUSH PRIVILEGES;" >> /tmp/sql
 # # SET PASSWORD FOR '${DB_USER}'@'%'=PASSWORD('${DB_PASSWORD}');
 # # select user, host FROM mysql.user;
 
+<<<<<<< HEAD
 # # killall mysqld
 
+=======
+# # printf "${red}RED${eoc}\n"
+
+# # killall mysqld
+
+# # printf "${dblue}D BLUE${eoc}\n"
+
+# # printf "${green}GREEN${eoc}\n"
+
+>>>>>>> 575b4836dfe84e0b1f03a5301b63ed1163db2dd8
 # /usr/share/mariadb/mysql.server stop
