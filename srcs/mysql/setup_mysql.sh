@@ -8,7 +8,7 @@ echo "CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';" >> /tmp/sql
 echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';" >> /tmp/sql
 echo "FLUSH PRIVILEGES;" >> /tmp/sql
 
-# /usr/bin/mysqld --console --init_file=/tmp/sql
+/usr/bin/mysqld --console --init_file=/tmp/sql
 # mysqld --console --init_file=/tmp/sql
 
-supervisord
+# supervisord
