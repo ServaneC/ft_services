@@ -53,17 +53,17 @@ kubectl create secret generic nginx-ssh \
 	--from-literal=password="schene"
 
 # build our images
+docker build -t wordpress_img ./srcs/wordpress
 docker build -t telegraf_img ./srcs/telegraf
 docker build -t nginx_img ./srcs/nginx
 docker build -t ftps_img ./srcs/ftps
 docker build -t phpmyadmin_img ./srcs/phpmyadmin
-docker build -t wordpress_img ./srcs/wordpress
 docker build -t grafana_img ./srcs/grafana
 
 # create and deploy our services
+kubectl create -f ./srcs/wordpress-service.yaml
 kubectl create -f ./srcs/telegraf-service.yaml
 kubectl create -f ./srcs/nginx-service.yaml
 kubectl create -f ./srcs/ftps-service.yaml
 kubectl create -f ./srcs/phpmyadmin-service.yaml
-kubectl create -f ./srcs/wordpress-service.yaml
 kubectl create -f ./srcs/grafana-service.yaml

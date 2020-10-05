@@ -3,7 +3,7 @@
 # install wordpress with admin user
 wp core install \
     --path=/var/www/wordpress \
-    --url=172.17.123.4:5050 \
+    --url=172.17.123.1:5050 \
     --title=Wordpress_ft_Services \
     --admin_user=admin \
     --admin_password=pass \
