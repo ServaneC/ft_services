@@ -1,8 +1,5 @@
 FROM alpine:3.12.0
 
-ARG INCOMING
-ENV MINIKUBE_IP=${INCOMING}
-
 RUN apk update && apk add wget tar supervisor --no-cache
 
 RUN mkdir /etc/telegraf && \
