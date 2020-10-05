@@ -17,7 +17,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 #     && mv wordpress /var/www/wordpress
     # && rm /var/www/wordpress/wp-admin/install.php
 
-RUN wp core download --path=/var/www/wordpress/
+RUN wp core download --path=/var/www/wordpress
 
 COPY wp-config.php /var/www/wordpress/
 # COPY install.php /var/www/wordpress/wp-admin/install.php

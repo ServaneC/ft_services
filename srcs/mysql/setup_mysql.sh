@@ -1,4 +1,5 @@
-mysql_install_db --user=$DB_USER --ldata=/var/lib/mysql
+mysql_install_db --verbose --user=mysql --ldata=/var/lib/mysql --tmpdir=/tmp
+# --basedir=/var/lib/mysql--datadir=/var/lib/mysql
 
 # DB_NAME = wordpress / DB_USER = mysql / DB_PASS = pass
 
