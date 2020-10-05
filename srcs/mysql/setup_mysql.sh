@@ -1,5 +1,4 @@
 mysql_install_db --verbose --user=mysql --ldata=/var/lib/mysql --tmpdir=/tmp
-# --basedir=/var/lib/mysql--datadir=/var/lib/mysql
 
 # DB_NAME = wordpress / DB_USER = mysql / DB_PASS = pass
 
@@ -9,7 +8,4 @@ echo "CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';" >> /tmp/sql
 echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';" >> /tmp/sql
 echo "FLUSH PRIVILEGES;" >> /tmp/sql
 
-/usr/bin/mysqld --console --init_file=/tmp/sql
-# mysqld --console --init_file=/tmp/sql
-
-# supervisord
+supervisord

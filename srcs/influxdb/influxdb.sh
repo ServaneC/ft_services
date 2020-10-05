@@ -1,3 +1,5 @@
 #! /bin/sh
 
-influxd run -config /etc/influxdb/influxdb.conf
+# influxd run -config /etc/influxdb/influxdb.conf
+
+supervisord

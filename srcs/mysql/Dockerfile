@@ -10,8 +10,6 @@ COPY supervisord.conf /etc/supervisord.conf
 
 COPY setup_mysql.sh ./setup_mysql.sh
 
-# RUN rmdir /var/lib/mysql
-
 RUN chmod +x ./setup_mysql.sh
 
 EXPOSE 3306
