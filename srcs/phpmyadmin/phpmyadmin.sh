@@ -1,3 +1,3 @@
 #! /bin/sh
 
-supervisord
+supervisord -c /etc/supervisord.conf

@@ -1,5 +1,7 @@
 #! /bin/sh
 
+wp core download --path=/var/www/wordpress
+
 # install wordpress with admin user
 wp core install \
     --path=/var/www/wordpress \
@@ -15,4 +17,4 @@ wp user create user2 user2@example.com --role=editor --path=/var/www/wordpress
 wp user create user3 user3@example.com --role=subscriber --path=/var/www/wordpress
 wp user create user4 user4@example.com --role=contributor --path=/var/www/wordpress
 
-supervisord
+supervisord -c /etc/supervisord.conf
