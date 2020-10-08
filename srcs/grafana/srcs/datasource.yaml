@@ -1,12 +1,10 @@
 apiVersion: 1
-
-deleteDatasources:
-  - name: influxdb
-    orgId: 1
-
 datasources:
 - name: influxdb
   type: influxdb
   access: proxy
-  database: telegraf_db
+  database: influxdb
+  isDefault: true
+  user: schene
+  password: schene42
   url: http://influxdb:8086

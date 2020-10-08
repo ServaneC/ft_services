@@ -1,3 +1,5 @@
 #! /bin/sh
+exec /usr/bin/telegraf
 
-supervisord -c /etc/supervisord.conf
+# telegraf --config /etc/telegraf.conf
+# supervisord -c /etc/supervisord.conf
