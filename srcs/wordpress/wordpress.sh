@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# WP_USER=admin WP_PASS=pass
+
 wp core download --path=/var/www/wordpress
 
 # install wordpress with admin user

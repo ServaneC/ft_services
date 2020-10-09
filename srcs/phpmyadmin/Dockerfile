@@ -13,12 +13,9 @@ RUN wget  http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-
     && mv phpMyAdmin-5.0.2-all-languages  phpmyadmin \
     && mv phpmyadmin /var/www/phpmyadmin
 
-
 COPY config.inc.php /var/www/phpmyadmin
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY supervisord.conf /etc/supervisord.conf
-
-# COPY create_users.sql /var/www/phpmyadmin/
 
 COPY phpmyadmin.sh .
 RUN chmod +x ./phpmyadmin.sh

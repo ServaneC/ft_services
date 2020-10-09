@@ -1,14 +1,5 @@
 # cleaning everything
-if ! kubectl version &>/dev/null; then
-	service nginx stop
-else
-    echo y | docker image prune -a
-    kubectl delete --all deploy
-    kubectl delete --all svc
-    kubectl delete --all secret
-    kubectl delete --all pods
-    kubectl delete -f ./srcs/metallb-config.yaml;
-fi
+sh clean.sh
 
 #creating our cluster and starting our dashboard
 minikube start --driver=docker
